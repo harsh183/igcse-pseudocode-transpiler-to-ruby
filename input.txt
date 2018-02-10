@@ -1,0 +1,68 @@
+x=3
+name="Bob"
+
+y=str(3*27)
+int("3")
+float("3.14")
+
+print(x)
+print(y)
+
+function triple(number)
+    return number*3
+endfunction
+
+y=triple(7)
+print(y)
+
+// Procedures are pretty similar to functions tbh
+procedure greeting(name)
+    print("hello"+name)
+endprocedure
+
+greeting("Hamish")
+
+someText="Computer Science"
+print(someText.length)
+print(someText.substring(3,3))
+
+// For loops might be tricky
+for i=0 to 7
+    print(i)
+next i
+
+do
+    answer=input("What is the answer to life, the universe and everything?")
+until answer=="42"
+
+print("hello")
+entry=input("Please enter your name")
+
+if entry=="Harsh" then
+    print("You selected Harsh") // That's me
+elseif entry=="B" then
+    print("You selected B")
+else
+    print("Unrecognised selection")
+endif
+
+while (x MOD 10 <= 5)
+    print(x)
+    x = x + 1
+endwhile
+
+print()
+
+print("Counting down from given input to 0")
+
+procedure countDownFrom(number)
+    while(number > 0)
+        print(number)
+        number = number - 1
+    endwhile
+endprocedure
+
+// Below line is not working
+//countDownAmount = int(input("So... enter that number"))
+countDownAmount = 20
+countDownFrom(countDownAmount)
