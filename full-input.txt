@@ -28,7 +28,6 @@ else
     print(“Unrecognised selection”)
 endif
 
-// Not done
 switch entry:
     case “A”:
          print(“You selected A”)

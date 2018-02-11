@@ -18,10 +18,12 @@ name="Bob"
 
 
 
-y=(3*27).to_s
+y=String(3*27)
 
-("3").to_i
-("3.14").to_f
+Integer("3")
+
+Float("3.14")
+
 
 
 print(x)
@@ -46,14 +48,30 @@ print(y)
 
 
 
+
+array names[5]
+
+names[0]=”Ahmad”
+
+names[1]=”Ben”
+
+names[2]=”Catherine”
+
+names[3]=”Dana”
+
+names[4]=”Elijah”
+
+print(names[3])
+
+
+
 entry=input("Please enter your name")
 
 
 
 if entry=="Harsh" 
 
-    print("You selected Harsh") # That's me
-
+    print("You selected Harsh") 
 elsif entry=="B" 
 
     print("You selected B")
@@ -66,7 +84,6 @@ end
 
 
 
-# Procedures are pretty similar to defs tbh
 
 def greeting(name)
 
@@ -88,7 +105,6 @@ print(someText.slice(3,3))
 
 
 
-# For loops might be tricky
 
 for i in 0..7
 
@@ -140,9 +156,7 @@ end
 
 
 
-# Below line is not working
 
-#countDownAmount = (input).to_inter that number"))
 
 
 

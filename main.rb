@@ -1,51 +1,15 @@
 require 'pry'
 
-output_text = ''
-
-# Add input function into the code output
-output_text << 'def input(string="Enter string")' + "\n"
-output_text << ' puts string' + "\n"
-output_text << ' enteredText = gets.chomp' + "\n"
-output_text << ' return enteredText' + "\n"
-output_text << 'end' + "\n"
-output_text << "\n"
-
-# Redo print function
-output_text << 'def print(string="")' + "\n"
-output_text << '  puts(string)'+ "\n"
-output_text << 'end'+ "\n"
-output_text << "\n"
-
 # TODO: Make sure the code conversions don't affect things inside strings (maybe write your own version of gsub that ignores comments and strings)
+# TODO: Escape variable names that contain part of a command
 def convert(code)
   output_text = ''
   output_lines = []
   code.lines.each do |line|
-    # Type conversions (from psudocode to ruby)
-    # TODO: Fix compound expressions with conversion
-    # TODO: Handle multiple conversions per line
-    type_conversions = { str: '.to_s',
-                         int: '.to_i',
-                         float: '.to_f' }
-    type_conversions.each do |type, ruby_code|
-      # TODO: Better way to skip print (since it has int in it's name)
-      unless line.index('print').nil?
-        next
-      end
+    # Handle comments
+    line = handle_comments(line)
 
-      # Find occupancies of the type conversion
-      start_point = line.index(type.to_s)
-      next if start_point.nil?
-
-      # binding.pry
-      end_point = line[start_point..line.length].index(')') + 2
-      substring = line[start_point..end_point]
-      # TODO: Parse code inside the bracket
-      binding.pry if substring.split('(')[1].nil?
-      replacement = '('+ substring.split('(')[1].split(')')[0] + ')' + ruby_code
-
-      line = line.gsub(substring, replacement)
-    end
+    line = handle_type_conversions(line)
 
     # Convert all the endings of blocks properly
     block_endings = ['endif', 'endfunction', 'endwhile', 'endprocedure', 'endswitch']
@@ -70,6 +34,9 @@ def convert(code)
       line.gsub!(operation.to_s, ruby_operation)
     end
 
+    # Handle arrays
+    # line = handle_array_init(line)
+
     # Handle functions
     line.gsub!('function', 'def')
 
@@ -88,15 +55,49 @@ def convert(code)
     # Handle substring
     line = handle_substring(line)
 
-    # Handle comments
-    # Note: I'm moving the comments over anyway
-    # TODO: Make sure there is an escape
-    line.gsub!('//', '#')
-
     output_lines.push line
   end
 
   output_text << output_lines.join("\n")
+end
+
+# Type conversions (from psudocode to ruby)
+def handle_type_conversions(line)
+  type_conversions = { str: 'String',
+                       int: 'Integer',
+                       float: 'Float' }
+  type_conversions.each do |type, ruby_code|
+    # TODO: Better way to skip print (since it has int in it's name)
+    unless line.index('print').nil?
+      next
+    end
+
+    line = line.gsub(type.to_s, ruby_code)
+  end
+
+  return line
+end
+
+# TODO: Escape strings
+def handle_comments(line)
+  if line.start_with?('//')
+    line = ''
+  elsif line.include? '//'
+    line = line[0..line.index('//') - 1]
+  end
+  return line
+end
+
+# TODO: Make this more generalized (i.e this only works when the array is declared on it's own line)
+def handle_array_init(line)
+  line = line.gsub('Array', 'array')
+  if line.include?('array')
+    variable_name = line.split('array').last
+    variable_name = variable_name.delete("\n")
+    dimensions = '[' + variable_name.split('[').last
+    binding.pry
+  end
+  return line
 end
 
 # Note: Since psudocode uses case to indicate each branch and ruby
@@ -187,6 +188,24 @@ def get_matching_bracket(string, open_bracket_index)
 
   return index
 end
+
+output_text = ''
+
+# Add input function into the code output
+output_text << 'def input(string="Enter string")' + "\n"
+output_text << ' puts string' + "\n"
+output_text << ' enteredText = gets.chomp' + "\n"
+output_text << ' return enteredText' + "\n"
+output_text << 'end' + "\n"
+output_text << "\n"
+
+# Redo print function
+output_text << 'def print(string="")' + "\n"
+output_text << '  puts(string)'+ "\n"
+output_text << 'end'+ "\n"
+output_text << "\n"
+
+# Create an array init function
 
 File.open('input.txt', 'r') do |f|
   code = f.read
