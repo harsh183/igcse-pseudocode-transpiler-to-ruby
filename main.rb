@@ -48,7 +48,7 @@ def convert(code)
     end
 
     # Convert all the endings of blocks properly
-    block_endings = ['endif', 'endfunction', 'endwhile', 'endprocedure']
+    block_endings = ['endif', 'endfunction', 'endwhile', 'endprocedure', 'endswitch']
     block_endings.each do |ending|
       line.gsub!(ending, 'end')
     end
@@ -58,6 +58,9 @@ def convert(code)
 
     # Convert elseif to elsif
     line.gsub!('elseif', 'elsif')
+
+    # Handle switch-case
+    line = handle_switch_case(line)
 
     # Convert logical operations to ruby equivalent
     logical_operations = { 'MOD' => '%',
@@ -94,6 +97,34 @@ def convert(code)
   end
 
   output_text << output_lines.join("\n")
+end
+
+# Note: Since psudocode uses case to indicate each branch and ruby
+#       uses case to indicate the block, we should parse case first
+#       and then the block header
+def handle_switch_case(line)
+  line = handle_case_header(line)
+  line = handle_switch_header(line)
+  line = handle_switch_default(line)
+  return line
+end
+
+def handle_case_header(line)
+  line = line.gsub('case', 'when')
+  line = line.delete(':')
+  return line
+end
+
+def handle_switch_header(line)
+  line = line.gsub('switch', 'case')
+  line = line.delete(':')
+  return line
+end
+
+def handle_switch_default(line)
+  line = line.gsub('default', 'else')
+  line = line.delete(':')
+  return line
 end
 
 def handle_do_until_loop_end(line)

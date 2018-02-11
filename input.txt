@@ -1,3 +1,5 @@
+print("Hello World")
+
 x=3
 name="Bob"
 
@@ -7,6 +9,7 @@ float("3.14")
 
 print(x)
 print(y)
+print(name)
 
 function triple(number)
     return number*3
@@ -15,12 +18,22 @@ endfunction
 y=triple(7)
 print(y)
 
+entry=input("Please enter your name")
+
+if entry=="Harsh" then
+    print("You selected Harsh") // That's me
+elseif entry=="B" then
+    print("You selected B")
+else
+    print("Unrecognised selection")
+endif
+
 // Procedures are pretty similar to functions tbh
 procedure greeting(name)
-    print("hello"+name)
+    print("anyway, hello "+name)
 endprocedure
 
-greeting("Hamish")
+greeting(entry)
 
 someText="Computer Science"
 print(someText.length)
@@ -35,17 +48,6 @@ do
     answer=input("What is the answer to life, the universe and everything?")
 until answer=="42"
 
-print("hello")
-entry=input("Please enter your name")
-
-if entry=="Harsh" then
-    print("You selected Harsh") // That's me
-elseif entry=="B" then
-    print("You selected B")
-else
-    print("Unrecognised selection")
-endif
-
 while (x MOD 10 <= 5)
     print(x)
     x = x + 1
@@ -53,7 +55,7 @@ endwhile
 
 print()
 
-print("Counting down from given input to 0")
+print("Counting from given input to 0")
 
 procedure countDownFrom(number)
     while(number > 0)
@@ -62,7 +64,21 @@ procedure countDownFrom(number)
     endwhile
 endprocedure
 
+
 // Below line is not working
 //countDownAmount = int(input("So... enter that number"))
+
 countDownAmount = 20
 countDownFrom(countDownAmount)
+
+print()
+
+something = input("Enter anything")
+switch something:
+    case "A":
+         print("You picked A")
+    case "42":
+         print("#Douglas Adams")
+    default:
+         print("You are a slave to the system")
+endswitch

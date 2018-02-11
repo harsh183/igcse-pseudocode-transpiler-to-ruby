@@ -8,6 +8,10 @@ def print(string="")
   puts(string)
 end
 
+print("Hello World")
+
+
+
 x=3
 
 name="Bob"
@@ -23,6 +27,8 @@ y=(3*27).to_s
 print(x)
 
 print(y)
+
+print(name)
 
 
 
@@ -40,17 +46,37 @@ print(y)
 
 
 
-# Procedures are pretty similar to defs tbh
+entry=input("Please enter your name")
 
-def greeting(name)
 
-    print("hello"+name)
+
+if entry=="Harsh" 
+
+    print("You selected Harsh") # That's me
+
+elsif entry=="B" 
+
+    print("You selected B")
+
+else
+
+    print("Unrecognised selection")
 
 end
 
 
 
-greeting("Hamish")
+# Procedures are pretty similar to defs tbh
+
+def greeting(name)
+
+    print("anyway, hello "+name)
+
+end
+
+
+
+greeting(entry)
 
 
 
@@ -80,28 +106,6 @@ while true
 end
 
 
-print("hello")
-
-entry=input("Please enter your name")
-
-
-
-if entry=="Harsh" 
-
-    print("You selected Harsh") # That's me
-
-elsif entry=="B" 
-
-    print("You selected B")
-
-else
-
-    print("Unrecognised selection")
-
-end
-
-
-
 while (x % 10 <= 5)
 
     print(x)
@@ -116,7 +120,7 @@ print()
 
 
 
-print("Counting while truewn from given input to 0")
+print("Counting from given input to 0")
 
 
 
@@ -134,10 +138,38 @@ end
 
 
 
+
+
 # Below line is not working
 
 #countDownAmount = (input).to_inter that number"))
 
+
+
 countDownAmount = 20
 
 countDownFrom(countDownAmount)
+
+
+
+print()
+
+
+
+something = input("Enter anything")
+
+case something
+
+    when "A"
+
+         print("You picked A")
+
+    when "42"
+
+         print("#Douglas Adams")
+
+    else
+
+         print("You are a slave to the system")
+
+end
