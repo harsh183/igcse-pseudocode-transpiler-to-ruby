@@ -59,7 +59,6 @@ procedure foobar(x:byVal, y:byRef)
     ...
 endprocedure
 
-// Not done
 array names[5]
 names[0]=”Ahmad”
 names[1]=”Ben”
