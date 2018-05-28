@@ -1,43 +1,43 @@
 x=3
-name=”Bob”
+name="Bob"
 
 str(3)
 int("3")
 float("3.14")
 
 print("hello")
-name=input(“Please enter your name”)
+name=input("Please enter your name")
 
 for i=0 to 7
-    print(“Hello”)
+    print("Hello")
 next i
 
-while answer!=”computer”
-    answer=input(“What is the password?”)
+while answer!="computer"
+    answer=input("What is the password?")
 endwhile
 
 do
-    answer=input(“What is the password?”)
-until answer==”computer”
+    answer=input("What is the password?")
+until answer=="computer"
 
-if entry==”a” then
-    print(“You selected A”)
-elseif entry==”b” then
-    print(“You selected B”)
+if entry=="a" then
+    print("You selected A")
+elseif entry=="b" then
+    print("You selected B")
 else
-    print(“Unrecognised selection”)
+    print("Unrecognised selection")
 endif
 
 switch entry:
-    case “A”:
-         print(“You selected A”)
-    case “B”:
-         print(“You selected B”)
+    case "A":
+         print("You selected A")
+    case "B":
+         print("You selected B")
     default:
-         print(“Unrecognised selection”)
+         print("Unrecognised selection")
 endswitch
 
-someText=”Computer Science”
+someText="Computer Science"
 print(someText.length)
 print(someText.substring(3,3))
 
@@ -48,10 +48,10 @@ endfunction
 y=triple(7)
 
 procedure greeting(name)
-    print(“hello”+name)
+    print("hello"+name)
 endprocedure
 
-greeting(“Hamish”)
+greeting("Hamish")
 
 // Not done
 procedure foobar(x:byVal, y:byRef)
@@ -68,30 +68,30 @@ endfunction
 print(xor(true, true))
 
 array names[5]
-names[0]=”Ahmad”
-names[1]=”Ben”
-names[2]=”Catherine”
-names[3]=”Dana”
-names[4]=”Elijah”
+names[0]="Ahmad"
+names[1]="Ben"
+names[2]="Catherine"
+names[3]="Dana"
+names[4]="Elijah"
 print(names[3])
 
 // Not done
 Array board[8,8]
-board[0,0]=”rook”
+board[0,0]="rook"
 
 // File IO not done
-myFile = openRead(“sample.txt”)
+myFile = openRead("sample.txt")
 x = myFile.readLine()
 myFile.close()
 
-myFile = openRead(“sample.txt”)
+myFile = openRead("sample.txt")
 while NOT myFile.endOfFile()
     print(myFile.readLine())
 endwhile
 myFile.close()
 
-myFile = openWrite(“sample.txt”)
-myFile.writeLine(“Hello World”)
+myFile = openWrite("sample.txt")
+myFile.writeLine("Hello World")
 myFile.close()
 
-print(“Hello World”) //This is a comment
+print("Hello World") //This is a comment
