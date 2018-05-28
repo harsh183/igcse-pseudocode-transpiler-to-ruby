@@ -79,19 +79,24 @@ print(names[3])
 Array board[8,8]
 board[0,0]="rook"
 
-// File IO not done
-myFile = openRead("sample.txt")
+// File IO
+myFile = openRead("sample-read.txt")
 x = myFile.readLine()
 myFile.close()
+print("First line below")
+print(x)
+print()
 
-myFile = openRead("sample.txt")
+myFile = openRead("sample-read.txt")
 while NOT myFile.endOfFile()
     print(myFile.readLine())
 endwhile
 myFile.close()
+print()
+print()
 
-myFile = openWrite("sample.txt")
-myFile.writeLine("Hello World")
+myFile = openWrite("sample-write.txt")
+myFile.writeLine("THIS IS A SAMPLE TEXT FILE CREATED TO SHOW THE WRITE FUNCTIONALITY")
 myFile.close()
 
 print("Hello World") //This is a comment

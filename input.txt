@@ -103,3 +103,23 @@ switch something:
     default:
          print("You are a slave to the system")
 endswitch
+
+// File IO
+myFile = openRead("sample-read.txt")
+x = myFile.readLine()
+myFile.close()
+print("First line below")
+print(x)
+print()
+
+myFile = openRead("sample-read.txt")
+while NOT myFile.endOfFile()
+    print(myFile.readLine())
+endwhile
+myFile.close()
+print()
+print()
+
+myFile = openWrite("sample-write.txt")
+myFile.writeLine("THIS IS A SAMPLE TEXT FILE CREATED TO SHOW THE WRITE FUNCTIONALITY")
+myFile.close()
