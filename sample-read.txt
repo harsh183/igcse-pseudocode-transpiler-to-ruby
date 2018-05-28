@@ -1,0 +1,10 @@
+THIS IS A SAMPLE FILE USED TO DEMO THE FILE READ FUNCTIONALITY OF THE COMPILER/PARSER
+There are 10 lines in the file.
+
+Four
+Five
+Six
+Seven
+Eight
+Nine
+Ten - EOF should be here:

@@ -18,6 +18,14 @@ def init_array(dimensions = [10], default_element = nil)
   end
 end
 
+def openRead(filename)
+  File.new(filename, 'r')
+end
+
+def openWrite(filename)
+  File.new(filename, 'w')
+end
+
 # END of BASE functionsprint("Hello World")
 
 x=3
@@ -113,3 +121,22 @@ case something
     else
          print("You are a slave to the system")
 end
+
+myFile = openRead("sample-read.txt")
+x = myFile.gets()
+myFile.close()
+print("First line below")
+print(x)
+print()
+
+myFile = openRead("sample-read.txt")
+while ! myFile.eof?()
+    print(myFile.gets())
+end
+myFile.close()
+print()
+print()
+
+myFile = openWrite("sample-write.txt")
+myFile.puts("THIS IS A SAMPLE TEXT FILE CREATED TO SHOW THE WRITE FUNCTIONALITY")
+myFile.close()
