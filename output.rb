@@ -1,23 +1,24 @@
-def input(string="Enter string")
- puts string
- enteredText = gets.chomp
- return enteredText
+# START of BASE functions
+def input(string = 'Enter string')
+  puts string
+  gets.chomp
 end
 
-def print(string="")
+def print(string = '')
   puts(string)
 end
 
-def initArray(dimensions=[10], default_element=nil) 
-  size = dimensions.first 
-  if dimensions.length > 1 
-    dimensions.shift 
-    return Array.new(size, initArray(dimensions)) 
-  else 
-    return Array.new(size, default_element) 
-  end 
- end 
-print("Hello World")
+def init_array(dimensions = [10], default_element = nil)
+  size = dimensions.first
+  if dimensions.length > 1
+    dimensions.shift
+    Array.new(size, init_array(dimensions, default_element))
+  else
+    Array.new(size, default_element)
+  end
+end
+
+# END of BASE functionsprint("Hello World")
 
 x=3
 name="Bob"
@@ -37,7 +38,7 @@ end
 y=triple(7)
 print(y)
 
- names = initArray([5])
+ names = init_array([5])
 names[0]="Ahmad"
 names[1]="Ben"
 names[2]="Catherine"
@@ -45,9 +46,8 @@ names[3]="Dan"
 names[4]="Elijah"
 print(names[3])
 
- board = initArray([8,8])
+ board = init_array([8,8])
 board[0][0]="rook"
-print(board[0,0])
 
 entry=input("Please enter your name")
 
