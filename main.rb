@@ -35,10 +35,12 @@ def convert(code)
     line = handle_array_init(line)
     line = handle_multidimensional_array_assign(line)
 
-    # Handle functions
-    line.gsub!('function', 'def')
+    line = handle_read_line(line)
+    line = handle_write_line(line)
+    line = handle_end_of_file(line)
 
-    # Handle procedures
+    # Functions and procedures
+    line.gsub!('function', 'def')
     line.gsub!('procedure', 'def')
 
 
@@ -91,7 +93,6 @@ def handle_logical_operations(line)
   return line
 end
 
-# Type conversions (from psudocode to ruby)
 def handle_type_conversions(line)
   type_conversions = { str: 'String',
                        int: 'Integer',
@@ -134,10 +135,10 @@ def handle_array_init(line)
   return line
 end
 
-# Note: Since psudocode uses case to indicate each branch and ruby
-#       uses case to indicate the block, we should parse case first
-#       and then the block header
 def handle_switch_case(line)
+  # Note: Since psudocode uses case to indicate each branch and ruby
+  #       uses case to indicate the block, we should parse case first
+  #       and then the block header
   line = handle_case_header(line)
   line = handle_switch_header(line)
   line = handle_switch_default(line)
@@ -198,6 +199,18 @@ def handle_substring(line)
   # Note: IGCSE defines subString(startingPosition, numberOfCharacters), this is equivalent to ruby slice
   line = line.gsub('substring', 'slice')
   return line
+end
+
+def handle_read_line(line)
+  line = line.gsub('readLine', 'gets')
+end
+
+def handle_write_line(line)
+  line = line.gsub('writeLine', 'puts')
+end
+
+def handle_end_of_file(line)
+  line = line.gsub('endOfFile', 'eof?')
 end
 
 output_text = ''

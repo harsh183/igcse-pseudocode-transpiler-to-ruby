@@ -18,4 +18,12 @@ def init_array(dimensions = [10], default_element = nil)
   end
 end
 
+def openRead(filename)
+  File.new(filename, 'r')
+end
+
+def openWrite(filename)
+  File.new(filename, 'w')
+end
+
 # END of BASE functions
