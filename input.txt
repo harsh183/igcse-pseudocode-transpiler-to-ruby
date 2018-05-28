@@ -30,7 +30,7 @@ print(names[3])
 // Multidimensional arrays
 Array board[8,8]
 board[0,0]="rook"
-print(board[0,0])
+// print(board[0,0])
 
 entry=input("Please enter your name")
 
