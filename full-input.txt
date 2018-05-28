@@ -59,6 +59,14 @@ procedure foobar(x:byVal, y:byRef)
     ...
 endprocedure
 
+// Logical operators
+// Note: XOR is AB' + A'B, since I want to test AND, OR and NOT this works out
+function xor(a, b)
+    return ((a AND NOT(b)) OR (NOT(a) AND b))
+endfunction
+
+print(xor(true, true))
+
 array names[5]
 names[0]=”Ahmad”
 names[1]=”Ben”

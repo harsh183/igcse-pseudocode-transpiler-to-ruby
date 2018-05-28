@@ -1,5 +1,6 @@
 require 'pry'
 
+# TODO: Create test cases
 # TODO: Make sure the code conversions don't affect things inside strings (maybe write your own version of gsub that ignores comments and strings) - or learn regex lmao
 # TODO: Escape variable names that contain part of a command
 
@@ -10,7 +11,6 @@ def convert(code)
   output_text = ''
   output_lines = []
   code.lines.each do |line|
-    # Handle comments
     line = handle_comments(line)
     line = handle_type_conversions(line)
 
@@ -29,13 +29,8 @@ def convert(code)
 
     line = handle_switch_case(line)
 
-    # Convert logical operations to ruby equivalent
-    logical_operations = { 'MOD' => '%',
-                           'DIV' => '/',
-                           '^'   => '**' }
-    logical_operations.each do |operation, ruby_operation|
-      line.gsub!(operation.to_s, ruby_operation)
-    end
+    line = handle_arithmetic_operations(line)
+    line = handle_logical_operations(line)
 
     line = handle_array_init(line)
     line = handle_multidimensional_array_assign(line)
@@ -74,11 +69,27 @@ def handle_multidimensional_array_assign(line)
   return line
 end
 
-=begin
-def handle_logical_operations(line)
+def handle_arithmetic_operations(line)
+  arithmetic_operations = { 'MOD' => '%',
+                            'DIV' => '/',
+                            '^'   => '**' }
+  arithmetic_operations.each do |operation, ruby_operation|
+    line = line.gsub(operation.to_s, ruby_operation)
+  end
 
+  return line
 end
-=end
+
+def handle_logical_operations(line)
+  logical_operations = { 'AND' => '&&',
+                         'OR'  => '||',
+                         'NOT' => '!' }
+  logical_operations.each do |operation, ruby_operation|
+    line = line.gsub(operation.to_s, ruby_operation)
+  end
+
+  return line
+end
 
 # Type conversions (from psudocode to ruby)
 def handle_type_conversions(line)

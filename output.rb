@@ -93,11 +93,16 @@ def countDownFrom(number)
 end
 
 
-
 countDownAmount = 20
 countDownFrom(countDownAmount)
 
 print()
+
+def xor(a, b)
+    return ((a && !(b)) || (!(a) && b))
+end
+
+print(xor(true, true))
 
 something = input("Enter anything")
 case something

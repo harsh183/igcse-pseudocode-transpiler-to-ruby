@@ -78,14 +78,21 @@ procedure countDownFrom(number)
     endwhile
 endprocedure
 
-
-// Below line is not working
+// TODO: Below line is not working
 //countDownAmount = int(input("So... enter that number"))
 
 countDownAmount = 20
 countDownFrom(countDownAmount)
 
 print()
+
+// Logical operators
+// Note: XOR is AB' + A'B, since I want to test AND, OR and NOT this works out
+function xor(a, b)
+    return ((a AND NOT(b)) OR (NOT(a) AND b))
+endfunction
+
+print(xor(true, true))
 
 something = input("Enter anything")
 switch something:
