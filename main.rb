@@ -1,6 +1,8 @@
 require 'pry'
 
+# TODO: Make a script that makes the whole thing into a one step process
 # TODO: Create test cases
+# TODO: Call by reference vs call by value
 # TODO: Make sure the code conversions don't affect things inside strings (maybe write your own version of gsub that ignores comments and strings) - or learn regex lmao
 # TODO: Escape variable names that contain part of a command
 
